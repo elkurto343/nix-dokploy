@@ -187,6 +187,7 @@ in {
         ExecStart = let
           script = pkgs.writeShellApplication {
             name = "dokploy-stack-start";
+            excludeShellChecks = [ "SC2034" ];
             runtimeInputs = [pkgs.curl pkgs.docker pkgs.hostname pkgs.gawk] ++
               (if cfg.swarm.advertiseAddress ? extraPackages
                then cfg.swarm.advertiseAddress.extraPackages
